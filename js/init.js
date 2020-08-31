@@ -44,8 +44,18 @@ var getJSONData = function(url){
 if (!window.location.href.endsWith("login.html") && !(sessionStorage.getItem("logueado") === "true")) {
   window.location.href = "login.html";
 }
+
+document.querySelectorAll('.site-header div')[0].innerHTML += `<a class="py-2 d-none d-md-inline-block" id="user-profile" href="my-profile.html"></a>`
+
+if (localStorage.getItem("nombre")) {
+  document.getElementById("user-profile").innerHTML = localStorage.getItem("nombre");
+} else {
+  document.getElementById("user-profile").innerHTML = sessionStorage.getItem("nombre");
+}
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+  
 });

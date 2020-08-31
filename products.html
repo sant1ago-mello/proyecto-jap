@@ -32,6 +32,38 @@
     </div>
     <div class="container">
       <div class="row">
+        <div class="col text-right">
+          <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
+            <label id="sortAsc" class="btn btn-light active">
+              <input type="radio" name="options" autocomplete="off" checked="">Menor Precio
+            </label>
+            <label id="sortDesc" class="btn btn-light">
+              <input type="radio" name="options" autocomplete="off">Mayor Precio
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-end">
+        <div class="col-md-6"></div>
+        <div class="col-md-6 col-sm-12 mb-1 container">
+          <div class="row container p-0 m-0">
+              <div class="col">
+                <p class="font-weight-normal text-right my-2">Filtrar precios:</p>
+              </div>
+              <div class="col">
+                <input type="number" id="rangeFilterCountMin" class="form-control" placeholder="min.">
+              </div>
+              <div class="col">
+                <input type="number" id="rangeFilterCountMax" class="form-control" placeholder="max.">
+              </div>
+              <div class="btn-group" role="group">
+                <button id="rangeFilterCount" class="btn btn-light btn-block">Filtrar</button>
+                <button id="clearRangeFilter" class="btn btn-link btn-sm">Limpiar</button>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <div class="list-group" id="cat-list-container">
         </div>
       </div>

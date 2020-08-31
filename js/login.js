@@ -1,7 +1,9 @@
 function submitEventHandler(evento) {
+    let nombreDeUsuario = document.getElementById("input-username").value
     evento.preventDefault();
     sessionStorage.setItem("logueado", "true");
     window.location.href = "index.html";
+    localStorage.setItem("nombre", nombreDeUsuario);
     return true;
 };
 
