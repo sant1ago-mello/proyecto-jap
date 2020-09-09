@@ -54,14 +54,14 @@ function sortCategories(criteria, array){
     }
 
     return result;
-}
+};
 
 
 var categoriesArray = [];
 
 function showCategoriesList(){
-
     let htmlContentToAppend = "";
+    
     for(let i = 0; i < currentCategoriesArray.length; i++){
         let category = currentCategoriesArray[i];
 
@@ -85,10 +85,11 @@ function showCategoriesList(){
             </div>
         </div>
         `
-  }
-}
+        }
+    }
   document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
 };
+
 
 function sortAndShowCategories(sortCriteria, categoriesArray){
     currentSortCriteria = sortCriteria;
@@ -99,7 +100,8 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
 
     currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
     showCategoriesList();
-}
+};
+
 
 document.addEventListener("DOMContentLoaded", function (e) {
   getJSONData(PRODUCTS_API).then(function(resultObj){
@@ -130,28 +132,29 @@ document.addEventListener("DOMContentLoaded", function (e) {
         maxCount = undefined;
 
         showCategoriesList();
+    })
+
+    document.querySelectorAll("")
+ });
+
+    document.getElementById("rangeFilterCount").addEventListener("click", function(){
+
+        minCount = document.getElementById("rangeFilterCountMin").value;
+        maxCount = document.getElementById("rangeFilterCountMax").value;
+
+        if ((minCount != undefined) && (minCount != "") && (parseInt(minCount)) >= 0){
+            minCount = parseInt(minCount);
+        }
+        else{
+            minCount = undefined;
+        }
+
+        if ((maxCount != undefined) && (maxCount != "") && (parseInt(maxCount)) >= 0){
+            maxCount = parseInt(maxCount);
+        }
+        else{
+            maxCount = undefined;
+        }
+
+        showCategoriesList();
     });
-});
-
-document.getElementById("rangeFilterCount").addEventListener("click", function(){
-    //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
-    //de productos por categoría.
-    minCount = document.getElementById("rangeFilterCountMin").value;
-    maxCount = document.getElementById("rangeFilterCountMax").value;
-
-    if ((minCount != undefined) && (minCount != "") && (parseInt(minCount)) >= 0){
-        minCount = parseInt(minCount);
-    }
-    else{
-        minCount = undefined;
-    }
-
-    if ((maxCount != undefined) && (maxCount != "") && (parseInt(maxCount)) >= 0){
-        maxCount = parseInt(maxCount);
-    }
-    else{
-        maxCount = undefined;
-    }
-
-    showCategoriesList();
-});

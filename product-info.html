@@ -25,14 +25,64 @@
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 3 (Fecha de entrega: 13/09/2020) y Entrega 4 (Fecha de entrega: 20/09/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  
+  <div class="container">
+    <div class="row mt-5">
+        <div class="col-lg-6">
+            <div id="main-pic" class="picture" style="display:none"></div>
+            <div id="second-pic" class="picture" style="display:none"></div>
+            <div id="third-pic" class="picture" style="display:none"></div>
+            <div id="fourth-pic" class="picture" style="display:none"></div>
+            <div id="fifth-pic" class="picture" style="display:none"></div>
+
+            <div class="row pt-0 pb-4 no-gutters ">
+                <div class="col">
+                    <a href="javascript:void(0)" onclick="openImg('main-pic');" id="first-thumbnail"></a>
+                </div>
+                <div class="col">
+                    <a href="javascript:void(0)" onclick="openImg('second-pic');" id="second-thumbnail"></a>
+                </div>
+                <div class="col">
+                    <a href="javascript:void(0)" onclick="openImg('third-pic');" id="third-thumbnail"></a>
+                </div>
+                <div class="col">
+                    <a href="javascript:void(0)" onclick="openImg('fourth-pic');" id="fourth-thumbnail"></a>
+                </div>
+                <div class="col">
+                    <a href="javascript:void(0)" onclick="openImg('fifth-pic');" id="fifth-thumbnail"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div id="product-info"></div>
+            <div class="action mt-4">
+                <button class="add-to-cart btn btn-default bg-primary text-white" type="button" id="boton">Añadir al carrito</button>
+            </div>
+        </div>
     </div>
   </div>
+
+  <div class="container mt-4">
+    <h3 class="mb-4">Quizas te interese:</h3>
+    <div class="row" id="related-products">
+    </div>
+  </div>
+
+  <div class="container mt-4">
+      <h3 class="mb-4">Opiniones sobre el producto:</h3>
+      <div id="comments"></div>
+  </div>
+  <div class="container mt-4">
+    <form action="" method="POST" id="comentario-usuario">
+      <label for="comment">Deja tu comentario:</label>
+      <textarea class="form-control" rows="5" id="comment" placeholder="Escribe tu comentario aquí"></textarea>
+      <div>
+        <button class="btn btn-lg btn-primary" type="submit">Enviar comentario</button>
+      </div>
+    </form> 
+  </div>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">
@@ -42,17 +92,9 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
+  <!--<script src="js/init.js"></script>-->
   <script src="js/product-info.js"></script>
 </body>
 
