@@ -70,7 +70,7 @@ function showCategoriesList(){
         
 
         htmlContentToAppend += `
-        <div class="list-group-item list-group-item-action">
+        <a href="product-info.html?product=` + category.name.toLowerCase().replace(/\s/g, '-') + `" style="text-decoration: none; color: #212529;"><div class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col-3">
                     <img src="` + category.imgSrc + `" alt="` + category.desc + `" class="img-thumbnail">
@@ -83,10 +83,12 @@ function showCategoriesList(){
                     <div>` + category.description + `</div>
                 </div>
             </div>
-        </div>
+        </div></a>
         `
-        }
-    }
+        };
+
+    };
+
   document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
 };
 
@@ -100,6 +102,7 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
 
     currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
     showCategoriesList();
+
 };
 
 
@@ -118,11 +121,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     document.getElementById("sortDesc").addEventListener("click", function(){
         sortAndShowCategories(ORDER_PRICE_DESC);
-    })
+    });
 
     document.getElementById("relevance").addEventListener("click", function(){
         sortAndShowCategories(ORDER_BY_RELEVANCE);
-    })
+    });
 
     document.getElementById("clearRangeFilter").addEventListener("click", function(){
         document.getElementById("rangeFilterCountMin").value = "";
@@ -132,9 +135,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
         maxCount = undefined;
 
         showCategoriesList();
-    })
+    });
 
-    document.querySelectorAll("")
  });
 
     document.getElementById("rangeFilterCount").addEventListener("click", function(){

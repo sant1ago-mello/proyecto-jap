@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
-  <title>eMercado - Todo lo que busques está aquí</title>
+  <title>Chevrolet Onix Joy - eMercado</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
@@ -77,6 +77,19 @@
     <form action="" method="POST" id="comentario-usuario">
       <label for="comment">Deja tu comentario:</label>
       <textarea class="form-control" rows="5" id="comment" placeholder="Escribe tu comentario aquí"></textarea>
+      <div class="rate mt-3">
+        <label for="">Califica el producto:</label>
+        <input type="radio" name="rating" value="5" id="star5" required>
+        <label for="star5"><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></label>
+        <input type="radio" name="rating" value="4" id="star4">
+        <label for="star4"><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></label>
+        <input type="radio" name="rating" value="3" id="star3">
+        <label for="star3"><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></label> 
+        <input type="radio" name="rating" value="2" id="star2">
+        <label for="star2"><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></label>
+        <input type="radio" name="rating" value="1" id="star1">
+        <label for="star1"><span class="fa fa-star checked"></span></label>
+      </div>
       <div>
         <button class="btn btn-lg btn-primary" type="submit">Enviar comentario</button>
       </div>
@@ -94,8 +107,9 @@
   </footer>
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
-  <!--<script src="js/init.js"></script>-->
+  <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js" integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg==" crossorigin="anonymous"></script>
 </body>
 
 </html>

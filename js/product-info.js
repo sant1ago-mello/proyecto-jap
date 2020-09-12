@@ -1,5 +1,3 @@
-const PRODUCT_INFO_URL = "https://japdevdep.github.io/ecommerce-api/product/5678.json";
-const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
 const PRODUCTS_API = "https://japdevdep.github.io/ecommerce-api/product/all.json"
 
 var getJSONData = function(url){
@@ -50,13 +48,13 @@ function appendInfoAndImg(array) {
       <p>` + array.soldCount + ` vendidos</p>
       <p class="mt-4">` + array.description + `</p>
     </div>
-    `;
+    `
 
     document.getElementById("product-info").innerHTML = contentToAppend;
 
 };
 
-//Función para cambiar la imagen principal cuando clickeamos en una imagen de la galería.
+//función para cambiar la imagen principal cuando clickeamos en una imagen de la galería.
 function openImg(imgName) {
     var i, x;
     x = document.getElementsByClassName("picture");
@@ -66,68 +64,102 @@ function openImg(imgName) {
     document.getElementById(imgName).style.display = "block";
 };
 
-//Función para agregar comentarios predefinidos.
-function appendComments(array) {
-  let commentsToAppend = "";
 
-  array.map(function(comments) {
-    commentsToAppend += `
-    <div class="row">
-      <div class="col-md-2">
-          <img src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" class="img img-rounded img-fluid"/>
-          <a href="#"><p class="text-primary text-center font-weight-bold">` + comments.user + `</p></a>
-      </div>
-      <div class="col-md-10">
-        <p>
-          <time class="float-left text-muted">` + comments.dateTime + `</time>
-          ` + rating(comments.score) + `
-        </p>
-        <div class="clearfix"></div>
-          <p>` + comments.description + `</p>
-      </div>
-    </div>
-        `;
-
-    document.getElementById("comments").innerHTML = commentsToAppend;
-  })
-};
-
-function rating(userScore) {
-  let plusStar = '<span class="fa fa-star checked float-right"></span>'
-  let minusStar = '<span class="fa fa-star float-right"></span>'
-  return plusStar.repeat(userScore) + minusStar.repeat(5 - userScore);
-};
-
-//Función para agregar productos relacionados.
+//función para agregar productos relacionados.
 function appendRelatedProducts(array) {
   let appendRelated = "";
 
   appendRelated += `
   <div class="col-md-4">
-    <div class="card mb-4">
+    <a href="product-info.html?product=` + array[1].name.toLowerCase().replace(/\s/g, '-') + `" style="text-decoration: none; color: #212529;"><div class="card mb-4">
       <img class="card-image-top" src="` + array[1].imgSrc + `" style="height: 225px; width: 100%; display: block;">
       <div class="card-body">
         <h5>` + array[1].name + `</h5>
         <p class="card-text">` + array[1].description + `</p>
         <strong>` + array[1].currency + ` ` + array[1].cost + `</strong>
       </div>
-    </div>
+    </div></a>
   </div>
 
   <div class="col-md-4">
-    <div class="card mb-4">
-      <img class="card-image-top" src="` + array[3].imgSrc + `" style="height: 225px; width: 100%; display: block;">
+    <a href="product-info.html?product=` + array[3].name.toLowerCase().replace(/\s/g, '-') + `" style="text-decoration: none; color: #212529;"><div class="card mb-4">
+      <img class="card-image-top" src="` + array[2].imgSrc + `" style="height: 225px; width: 100%; display: block;">
       <div class="card-body">
         <h5>` + array[3].name + `</h5>
         <p class="card-text">` + array[3].description + `</p>
         <strong>` + array[3].currency + ` ` + array[3].cost + `</strong>
       </div>
-    </div>
+    </div></a>
   </div>
   `
+
   document.getElementById("related-products").innerHTML = appendRelated;
 };
 
+
+//función para agregar comentarios predefinidos.
+function appendComments(array) {
+  let commentsToAppend = "";
+
+  array.map(function(comments) {
+    commentsToAppend += `
+    <div class="row">
+      <div class="col-md-2 mb-5">
+          <a href=""><p class="text-primary text-center font-weight-bold">` + comments.user + `</p></a>
+      </div>
+      <div class="col-md-10">
+        <p>
+          <time class="float-left text-muted">` + showDate(comments.dateTime) + `</time>
+          ` + commentRating(comments.score) + `
+        </p>
+        <div class="clearfix"></div>
+          <p>` + comments.description + `</p>
+      </div>
+    </div>
+    <hr>
+    `;
+
+    document.getElementById("comments").innerHTML = commentsToAppend;
+  })
+};
+
+//funcion para mostrar rating como estrellas
+function commentRating(userScore) {
+  let plusStar = '<span class="fa fa-star checked float-right"></span>'
+  let minusStar = '<span class="fa fa-star float-right"></span>'
+  return plusStar.repeat(userScore) + minusStar.repeat(5 - userScore);
+};
+
+//funcion para darle formato a la fecha de comentarios (n: use una libreria externa (https://momentjs.com/) pero no se si esta permitido.)
+function showDate(commentDate) {
+  return (moment(commentDate).format('DD/MM/YYYY HH:MM'));
+};
+
+//funcion para agregar nuestro comentario
+function apppendUserComment() {
+  let userComment = document.getElementById("comentario-usuario");
+
+  userComment.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let newComment = {
+        'score' : userComment['rating'].value,
+        'description' : userComment['comment'].value, 
+        'user' : localStorage.getItem("nombre"),
+        'dateTime' : new Date().toISOString(),
+    };
+    
+    commentsArray.push(newComment);
+    appendComments(commentsArray);
+    resetCommentForm();
+  });
+};
+
+function resetCommentForm(){
+  let commentForm = document.getElementById("comentario-usuario");
+  commentForm["rating"].value = "5";
+  commentForm["comment"].value = "";
+};
 
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
@@ -136,7 +168,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
         infoArray = resultObj.data; 
         appendInfoAndImg(infoArray);
         openImg("main-pic");
-    }
+        apppendUserComment()
+      };
     });
 
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(response) {
@@ -144,8 +177,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
       {
         commentsArray = response.data;
         appendComments(commentsArray);
-        console.log(Date(commentsArray[0].dateTime))
-      }
+      };
     });
 
     getJSONData(PRODUCTS_API).then(function(response) {
@@ -153,6 +185,16 @@ document.addEventListener("DOMContentLoaded", function (e) {
       {
         relatedProductsArray = response.data;
         appendRelatedProducts(relatedProductsArray);
-      }
+      };
     });
+
+    //secuencia para cambiar el titulo de la pagina dependiendo de el parametro URL
+    if (window.location.search == "?product=fiat-way") {
+      document.title = "Fiat Way - eMercado";
+    } else if (window.location.search == "?product=peugeot-208") {
+      document.title = "Peugeot 208 - eMercado";
+    } else if (window.location.search == "?product=suzuki-celerio") {
+      document.title = "Suzuki Celerio - eMercado";
+    };
+
 });
