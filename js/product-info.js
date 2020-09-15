@@ -51,7 +51,6 @@ function appendInfoAndImg(array) {
     `
 
     document.getElementById("product-info").innerHTML = contentToAppend;
-
 };
 
 //función para cambiar la imagen principal cuando clickeamos en una imagen de la galería.
@@ -120,22 +119,22 @@ function appendComments(array) {
     `;
 
     document.getElementById("comments").innerHTML = commentsToAppend;
-  })
+  });
 };
 
-//funcion para mostrar rating como estrellas
+//función para mostrar rating como estrellas
 function commentRating(userScore) {
   let plusStar = '<span class="fa fa-star checked float-right"></span>'
   let minusStar = '<span class="fa fa-star float-right"></span>'
   return plusStar.repeat(userScore) + minusStar.repeat(5 - userScore);
 };
 
-//funcion para darle formato a la fecha de comentarios (n: use una libreria externa (https://momentjs.com/) pero no se si esta permitido.)
+//función para darle formato a la fecha de comentarios (n: use una libreria externa (https://momentjs.com/) pero no se si esta permitido.)
 function showDate(commentDate) {
-  return (moment(commentDate).format('DD/MM/YYYY HH:MM'));
+  return (moment(commentDate).format('DD/MM/YYYY HH:mm'));
 };
 
-//funcion para agregar nuestro comentario
+//función para agregar nuestro comentario
 function apppendUserComment() {
   let userComment = document.getElementById("comentario-usuario");
 
@@ -155,20 +154,21 @@ function apppendUserComment() {
   });
 };
 
+//función para resetear los campos de envio de comentario 
 function resetCommentForm(){
   let commentForm = document.getElementById("comentario-usuario");
   commentForm["rating"].value = "5";
   commentForm["comment"].value = "";
 };
 
-document.addEventListener("DOMContentLoaded", function (e) {
+document.addEventListener("DOMContentLoaded", function() {
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
       if (resultObj.status === "ok")
       {
         infoArray = resultObj.data; 
         appendInfoAndImg(infoArray);
         openImg("main-pic");
-        apppendUserComment()
+        apppendUserComment();
       };
     });
 

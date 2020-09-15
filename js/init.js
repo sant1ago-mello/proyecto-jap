@@ -45,13 +45,24 @@ if (!window.location.href.endsWith("login.html") && !(sessionStorage.getItem("lo
   window.location.href = "login.html";
 }
 
-document.querySelectorAll('.site-header div')[0].innerHTML += `<a class="py-2 d-none d-md-inline-block" id="user-profile" href="my-profile.html"></a>`
+document.querySelectorAll('.site-header div')[0].innerHTML += `
+<div class="dropdown">
+  <a class="py-2 d-none d-md-inline-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    ` + localStorage.getItem("nombre") + `
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="cart.html">Mi carrito</a>
+    <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+    <button class="dropdown-item" onclick="closeSession()">Cerrar sesion</button>
+  </div>
+</div>
+`;
 
-if (localStorage.getItem("nombre")) {
-  document.getElementById("user-profile").innerHTML = localStorage.getItem("nombre");
-} else {
-  document.getElementById("user-profile").innerHTML = sessionStorage.getItem("nombre");
-}
+function closeSession() {
+  localStorage.setItem("nombre", "");
+  sessionStorage.setItem("logueado", "false");
+  window.location.href = "index.html";
+};
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
