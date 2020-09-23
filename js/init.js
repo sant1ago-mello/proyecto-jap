@@ -43,7 +43,8 @@ var getJSONData = function(url){
 
 if (!window.location.href.endsWith("login.html") && !(sessionStorage.getItem("logueado") === "true")) {
   window.location.href = "login.html";
-}
+};
+
 
 document.querySelectorAll('.site-header div')[0].innerHTML += `
 <div class="dropdown">
@@ -59,9 +60,9 @@ document.querySelectorAll('.site-header div')[0].innerHTML += `
 `;
 
 function closeSession() {
-  localStorage.setItem("nombre", "");
+  localStorage.removeItem("nombre");
   sessionStorage.setItem("logueado", "false");
-  window.location.href = "index.html";
+  location.reload();
 };
 
 //Función que se ejecuta una vez que se haya lanzado el evento de

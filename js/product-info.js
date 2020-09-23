@@ -26,21 +26,40 @@ var infoArray = [];
 var commentsArray = [];
 var relatedProductsArray = [];
 
-//Función para agregar galeria de imagenes y agregar información del producto.
+
+//Función para agregar carrusel de imagenes y agregar información del producto.
 function appendInfoAndImg(array) {
     let contentToAppend = "";
     
-    document.getElementById("main-pic").innerHTML = `<img class="img-fluid" src="` + array.images[0] + `" alt="">`
-    document.getElementById("second-pic").innerHTML = `<img class="img-fluid" src="` + array.images[1] + `" alt="">`
-    document.getElementById("third-pic").innerHTML = `<img class="img-fluid" src="` + array.images[2] + `" alt="">`
-    document.getElementById("fourth-pic").innerHTML = `<img class="img-fluid" src="` + array.images[3] + `" alt="">`
-    document.getElementById("fifth-pic").innerHTML = `<img class="img-fluid" src="` + array.images[4] + `" alt="">`
-
-    document.getElementById("first-thumbnail").innerHTML = `<img class="img-fluid" src="` + array.images[0] + `" alt="">`
-    document.getElementById("second-thumbnail").innerHTML = `<img class="img-fluid" src="` + array.images[1] + `" alt="">`
-    document.getElementById("third-thumbnail").innerHTML = `<img class="img-fluid" src="` + array.images[2] + `" alt="">`
-    document.getElementById("fourth-thumbnail").innerHTML = `<img class="img-fluid" src="` + array.images[3] + `" alt="">`
-    document.getElementById("fifth-thumbnail").innerHTML = `<img class="img-fluid" src="` + array.images[4] + `" alt="">`
+    document.getElementById("image-carousel").innerHTML = `
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="d-block w-100" src="` + array.images[0] + `" alt="first image">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="` + array.images[1] + `" alt="second image">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="` + array.images[2] + `" alt="third image">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="` + array.images[3] + `" alt="fourth image">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="` + array.images[4] + `" alt="last image">
+        </div>
+        </div>
+      <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    `
       
     contentToAppend += `
       <h1 class="mt-3">` + array.name + `</h1>
@@ -51,16 +70,6 @@ function appendInfoAndImg(array) {
     `
 
     document.getElementById("product-info").innerHTML = contentToAppend;
-};
-
-//función para cambiar la imagen principal cuando clickeamos en una imagen de la galería.
-function openImg(imgName) {
-    var i, x;
-    x = document.getElementsByClassName("picture");
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-    }
-    document.getElementById(imgName).style.display = "block";
 };
 
 
@@ -161,13 +170,13 @@ function resetCommentForm(){
   commentForm["comment"].value = "";
 };
 
+
 document.addEventListener("DOMContentLoaded", function() {
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
       if (resultObj.status === "ok")
       {
         infoArray = resultObj.data; 
         appendInfoAndImg(infoArray);
-        openImg("main-pic");
         apppendUserComment();
       };
     });
@@ -196,5 +205,5 @@ document.addEventListener("DOMContentLoaded", function() {
     } else if (window.location.search == "?product=suzuki-celerio") {
       document.title = "Suzuki Celerio - eMercado";
     };
-
+    
 });
