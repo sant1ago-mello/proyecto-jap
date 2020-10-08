@@ -138,7 +138,7 @@ function commentRating(userScore) {
   return plusStar.repeat(userScore) + minusStar.repeat(5 - userScore);
 };
 
-//función para darle formato a la fecha de comentarios (n: use una libreria externa (https://momentjs.com/) pero no se si esta permitido.)
+//función para darle formato a la fecha de comentarios
 function showDate(commentDate) {
   return (moment(commentDate).format('DD/MM/YYYY HH:mm'));
 };

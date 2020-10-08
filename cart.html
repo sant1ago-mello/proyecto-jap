@@ -22,6 +22,10 @@
       user-select: none;
     }
 
+    .product-cuantity-input {
+      width: 3em;
+    }
+
     @media (min-width: 768px) {
       .bd-placeholder-img-lg {
         font-size: 3.5rem;
@@ -42,22 +46,28 @@
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 11/10/2020) y Entrega 6 (Fecha de entrega: 25/10/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+
+  <div class="container mt-5">
+    <div class="text-center mb-5">
+      <h1>Mi Carrito</h1>
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label id="currency-pesos" class="btn btn-light">
+          <input type="radio" name="currency-options" autocomplete="off">Mostrar precios en pesos
+        </label>
+        <label id="currency-dollars" class="btn btn-light">Mostrar precios en dolares
+          <input type="radio" name="currency-options" autocomplete="off">
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5 order-md-1 mb-4" id="cart-container">
+      </div>
+      <div class="col-md-6 order-md-2 mb-4" id="checkout">
+      </div>
     </div>
   </div>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
+
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/dropzone.js"></script>
