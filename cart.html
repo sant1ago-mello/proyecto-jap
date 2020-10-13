@@ -50,20 +50,32 @@
   <div class="container mt-5">
     <div class="text-center mb-5">
       <h1>Mi Carrito</h1>
-      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <label id="currency-pesos" class="btn btn-light">
-          <input type="radio" name="currency-options" autocomplete="off">Mostrar precios en pesos
-        </label>
-        <label id="currency-dollars" class="btn btn-light">Mostrar precios en dolares
-          <input type="radio" name="currency-options" autocomplete="off">
-        </label>
-      </div>
     </div>
 
     <div class="row">
-      <div class="col-md-5 order-md-1 mb-4" id="cart-container">
+      <!--Carrito de compras-->
+      <div class="col-md-5 order-md-1 mb-4" id="cart-container">       
       </div>
-      <div class="col-md-6 order-md-2 mb-4" id="checkout">
+
+      <!--Datos de la compra-->
+      <div class="col-md-6 order-md-2 mb-4 ml-3" id="checkout">
+        <div class="container">
+          <div class="mb-3 mt-3">
+            <h4 class="text-center">Datos de la compra</h4>
+          </div>
+
+          <label for="datos-envio">Envio a: </label>
+          <select name="datos-envio" id="datos-envio">
+            <option value="montevideo">Montevideo</option>
+            <option value="interior">Interior (Costo: $ 200)</option>
+          </select>
+          <br>
+
+          <div class="mt-3" id="total">
+            <h3>Total: UYU 200</h3>
+          </div>
+          <button class="btn btn-primary" id="finalizar-compra">Finalizar Compra</button>
+        </div>
       </div>
     </div>
   </div>
