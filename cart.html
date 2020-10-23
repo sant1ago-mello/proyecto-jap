@@ -54,28 +54,101 @@
 
     <div class="row">
       <!--Carrito de compras-->
-      <div class="col-md-5 order-md-1 mb-4" id="cart-container">       
-      </div>
+      <div class="col-md-5 order-md-1 mb-4" id="cart-container"></div>
 
       <!--Datos de la compra-->
-      <div class="col-md-6 order-md-2 mb-4 ml-3" id="checkout">
+      <div class="col-md-6 order-md-2 mb-4 ml-5 border" id="checkout">
         <div class="container">
-          <div class="mb-3 mt-3">
-            <h4 class="text-center">Datos de la compra</h4>
+          <div class="mb-4 mt-3">
+            <h3 class="text-center">Datos de la compra</h3>
           </div>
 
-          <label for="datos-envio">Envio a: </label>
-          <select name="datos-envio" id="datos-envio">
-            <option value="montevideo">Montevideo</option>
-            <option value="interior">Interior (Costo: $ 200)</option>
-          </select>
+          <div class="form-group">
+            <form action="" id="datos-envio">
+              <h4>Tipo de envío</h4>
+
+              <div>
+                <select name="forma-de-envio" id="forma-de-envio">
+                  <option value="envio-premium" selected>Premium (2-5 días) - Costo del 15% sobre el subtotal.</option>
+                  <option value="envio-express">Express (5-8 días) - Costo del 7% sobre el subtotal.</option>
+                  <option value="envio-standard">Standard (12 a 15 días) - Costo del 5% sobre el subtotal.</option>
+                </select>
+              </div>
+              <br>
+
+              <h4>Dirección de envío</h4>
+              <div class="form-row">
+                <div class="form-group col-md-5">
+                  <label for="envio-calle">Calle:</label>
+                  <input type="text" class="form-control" id="envio-calle" required>
+                </div>
+                <div class="form-group col-md-5">
+                  <label for="envio-esquina">Esquina:</label>
+                  <input type="text" class="form-control" id="envio-esquina" required>
+                </div>
+                <div class="form-group col-md-5">
+                  <label for="envio-numero-calle">Numero:</label>
+                  <input type="number" id="envio-numero-calle">
+                </div>
+                <div class="form-group col-md-5">
+                  <label for="envio-pais">Pais:</label>
+                  <input type="text" class="form-control" id="envio-pais" required>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div>
+            <h4>Costos</h4>
+            <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Subtotal</h6>
+                  <small class="text-muted">Costo unitario del producto por cantidad.</small>
+                </div>
+                <span class="text-muted" id="subtotal"></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Costo del envío</h6>
+                  <small class="text-muted">Según el tipo de envío.</small>
+                </div>
+                <span class="text-muted" id="porcentaje-envio"></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Total ($)</h6>
+                </div>
+                <strong id="total"></strong>
+              </li>
+            </ul>
+          </div>
           <br>
 
-          <div class="mt-3" id="total">
-            <h3>Total: UYU 200</h3>
+          
+          <h4>Forma de pago</h4>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#forma-de-pago">Seleccionar</button>
+
+          <div class="modal fade" id="forma-de-pago" tabindex="-1" aria-labelledby="formaDePagoModal" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="formaDePagoModal">Forma de pago</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-primary">Aceptar</button>
+                </div>
+              </div>
+            </div>
           </div>
-          <button class="btn btn-primary" id="finalizar-compra">Finalizar Compra</button>
-        </div>
+
       </div>
     </div>
   </div>

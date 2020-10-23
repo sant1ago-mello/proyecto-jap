@@ -22,12 +22,13 @@ var getJSONData = function(url){
 
 var cartArray = [];
 var subTotal;
-var envio = 0;
+var shippingPercentage;
 
 //función para agregar articulo predefinido.
 function showCart(array) {
   let itemsTotal = "";
   let cartToShow = "";
+  let envioPremium
   let showSubTotal = "";
 
   itemsTotal += `
@@ -51,35 +52,26 @@ function showCart(array) {
       </ul>
     `
     
-    showSubTotal += `
-      <div class="container">
-        <h4 id="subtotal">Subtotal: `+ cartElements.currency +` `+ cartElements.unitCost * cartElements.count + `</h4>
-      </div>
-    `
-    document.getElementById("cart-container").innerHTML = itemsTotal + cartToShow + showSubTotal;
+    document.getElementById("subtotal").innerHTML = cartElements.currency +` `+ cartElements.unitCost * cartElements.count
+    document.getElementById("cart-container").innerHTML = itemsTotal + cartToShow;
+    document.getElementById("porcentaje-envio").innerHTML = cartElements.currency + ` ` + cartElements.unitCost*cartElements.count*15/100;
+    document.getElementById("total").innerHTML = cartElements.currency + ` ` + parseInt(cartElements.unitCost*cartElements.count+cartElements.unitCost*cartElements.count*15/100);
   });
 };
 
-//función para calcular el IVA.
-function calculateIVA() {
-  return subTotal*22 / 100;
-};
-
-//función para mostrar el subtotal y el total de la compra.
-function showSubTotalandTotal() {
-  document.getElementById("productTotal").innerHTML = "<strong>" + cartArray[0].currency + " " + subTotal + "</strong>"
-  document.getElementById("subtotal").innerHTML = "<h4>Subtotal: " + cartArray[0].currency + " " + subTotal +"</h4>"
-  document.getElementById("total").innerHTML = "<h3>Total: " + cartArray[0].currency + " " + parseInt(subTotal+envio+calculateIVA()) + " IVA inc.</h3>"
+function total() {
+  document.getElementById("porcentaje-envio").innerHTML = cartArray[0].currency + ` ` + shippingPercentage;
+  document.getElementById("total").innerHTML = cartArray[0].currency + ` ` + parseInt(subTotal+shippingPercentage);
 };
 
 //Mostrar mensaje cuando se concreta una compra.
-document.getElementById("finalizar-compra").addEventListener("click", function() {
+/*document.getElementById("finalizar-compra").addEventListener("click", function() {
   getJSONData(CART_BUY_URL).then(function(buyMsj) {
     if (buyMsj.status === "ok") {
       alert(buyMsj.data.msg);
     };
   });
-});
+});*/
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -90,24 +82,30 @@ document.addEventListener("DOMContentLoaded", function() {
       {
         cartArray = resultObj.data.articles;
         showCart(cartArray);
+        subTotal = document.getElementById("numberOfProductsBought").value*cartArray[0].unitCost
       };
       
       //Calcular el subtotal.
       document.getElementById("numberOfProductsBought").addEventListener("change", function() {
         subTotal = document.getElementById("numberOfProductsBought").value*cartArray[0].unitCost
-        
-        //Añadir 200 pesos al total si el envio es al interior.
-        document.getElementById("datos-envio").addEventListener("change", function() {
-          if (document.getElementById("datos-envio").value === "interior") {
-            envio = 200;
-            document.getElementById("total").innerHTML = "<h3>Total: " + cartArray[0].currency + " " + parseInt(subTotal+envio+calculateIVA()) + " IVA inc.</h3>"
-          } else if (document.getElementById("datos-envio").value === "montevideo") {
-            envio = 0;
-            document.getElementById("total").innerHTML = "<h3>Total: " + cartArray[0].currency + " " + parseInt(subTotal+calculateIVA()) + " IVA inc.</h3>"
-          }
-        });
-  
-        showSubTotalandTotal();
-      });
+
+        document.getElementById("productTotal").innerHTML = "<strong>" + cartArray[0].currency + " " + subTotal + "</strong>"
+        document.getElementById("subtotal").innerHTML = cartArray[0].currency + " " + subTotal
+
+        if (document.getElementById("forma-de-envio").value === "envio-premium") {
+          shippingPercentage = (subTotal*15)/100;
+          document.getElementById("porcentaje-envio").innerHTML = cartArray[0].currency + ` ` + shippingPercentage;
+          document.getElementById("total").innerHTML = cartArray[0].currency + ` ` + parseInt(subTotal+shippingPercentage);
+        } else if (document.getElementById("forma-de-envio").value === "envio-express") {
+          shippingPercentage = (subTotal*7/100);
+          document.getElementById("porcentaje-envio").innerHTML = cartArray[0].currency + ` ` + shippingPercentage;
+          document.getElementById("total").innerHTML = cartArray[0].currency + ` ` + parseInt(subTotal+shippingPercentage);
+        } else if (document.getElementById("forma-de-envio").value === "envio-standard")
+          shippingPercentage = (subTotal*5/100);
+          document.getElementById("porcentaje-envio").innerHTML = cartArray[0].currency + ` ` + shippingPercentage;
+          document.getElementById("total").innerHTML = cartArray[0].currency + ` ` + parseInt(subTotal+shippingPercentage);
+ 
+        total()
     });
-  })
+  });
+});
