@@ -25,7 +25,11 @@
     @media (min-width: 768px) {
       .bd-placeholder-img-lg {
         font-size: 3.5rem;
-      }
+      }  
+    }
+
+    .age-input-length {
+      width: 3em;
     }
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -42,34 +46,55 @@
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  
+  <div class="container text-center p-5">
+    <h1>Mi perfil</h1>
+  </div>
+
+  <div class="container d-flex justify-content-center">
+    <div class="col-md-6 d-flex justify-content-around">
+      <div class="pt-3">
+        <img src="img/profile_img.jpg" class="img-fluid" alt="profile-image">
+      </div>  
+      <div class="pt-3">
+        <p><b>Nombre:</b> Todavia no has ingresado tu nombre!</p>
+        <p><b>Edad:</b> Todavia no has ingresado tu edad!</p>
+        <p><b>E-mail:</b> Todavia no has ingresado tu e-mail!</p>
+        <p><b>Telefono:</b> Todavia no has ingresado tu telefono!</p>
+      </div>
+    </div>
+
+    <div class="col-md-3 ml-4 border">
+      <div class="text-center mb-4">
+        <h4>Editar datos personales</h4>
+      </div>
+      <div class="form-row">
+        <form action="" method="GET" id="editar-datos">
+          <div class="form-group">
+            <label for="editar-nombre">Ingresa tu nombre:</label>
+            <input type="text" id="editar-nombre" name="nombre-usuario">
+          </div>
+          <div class="form-group">
+            <label for="editar-apellido">Ingresa tu apellido:</label>
+            <input type="text" id="editar-apellido" name="apellido-usuario">
+          </div>
+          <div class="form-group">
+            <label for="editar-edad">Ingresa tu edad:</label>
+            <input type="number" id="editar-edad" name="edad-usuario" class="age-input-length">
+          </div>
+          <div class="form-group">
+            <label for="editar-email">Ingresa tu e-mail:</label>
+            <input type="email" id="editar-email" name="email-usuario">
+          </div>
+          <div class="form-group">
+            <label for="editar-telefono">Ingresa tu numero de telefono:</label>
+            <input type="number" id="editar-telefono" name="telefono-usuario">
+          </div>
+        </form> 
+      </div>  
     </div>
   </div>
-  <footer class="text-muted bg-light">
-    <div class="container">
-      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
-    </div>
-  </footer>
-  <div class="alert fade alert-success" role="alert" id="alertResult">
-    <span id="resultSpan"></span>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
+
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/dropzone.js"></script>

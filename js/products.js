@@ -70,20 +70,26 @@ function showCategoriesList(){
         
 
         htmlContentToAppend += `
-        <a href="product-info.html?product=` + category.name.toLowerCase().replace(/\s/g, '-') + `" style="text-decoration: none; color: #212529;"><div class="list-group-item list-group-item-action">
-            <div class="row">
-                <div class="col-3">
-                    <img src="` + category.imgSrc + `" alt="` + category.desc + `" class="img-thumbnail">
-                </div>
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">`+ category.name +`</h4>
-                        <h5>` + category.currency + ` ` + category.cost + `</h5>
-                    </div>
-                    <div>` + category.description + `</div>
-                </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <a href="product-info.html?product=` + category.name.toLowerCase().replace(/\s/g, '-') + `" style="text-decoration: none; color: #212529;">
+                        <div class="card mb-4">
+                            <img src="` + category.imgSrc + `" alt="` + category.desc + `" class="img-thumbnail">
+                        </div>
+                        <div class="ml-3">
+                            <h4>`+ category.name +`</h4>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                ` + category.description + `    
+                            </p>
+                            <div>
+                                <strong>`+ category.currency + ` ` + category.cost +`</strong>
+                            </div>
+                        </div>
+                    </a>
+                </div>    
             </div>
-        </div></a>
         `
         };
 
