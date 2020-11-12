@@ -51,36 +51,35 @@
     <h1>Mi perfil</h1>
   </div>
 
+  <!--Datos del usuario-->
   <div class="container d-flex justify-content-center">
     <div class="col-md-6 d-flex justify-content-around">
       <div class="pt-3">
         <img src="img/profile_img.jpg" class="img-fluid" alt="profile-image">
       </div>  
       <div class="pt-3">
-        <p><b>Nombre:</b> Todavia no has ingresado tu nombre!</p>
-        <p><b>Edad:</b> Todavia no has ingresado tu edad!</p>
-        <p><b>E-mail:</b> Todavia no has ingresado tu e-mail!</p>
-        <p><b>Telefono:</b> Todavia no has ingresado tu telefono!</p>
+        <p id="usuario-nombre"><b>Nombre:</b> Todavia no has ingresado tu nombre!</p>
+        <p id="usuario-edad"><b>Edad:</b> Todavia no has ingresado tu edad!</p>
+        <p id="usuario-email"><b>E-mail:</b> Todavia no has ingresado tu e-mail!</p>
+        <p id="usuario-telefono"><b>Telefono:</b> Todavia no has ingresado tu telefono!</p>
       </div>
     </div>
 
-    <div class="col-md-3 ml-4 border">
-      <div class="text-center mb-4">
+    <!--Editar datos de usuario-->
+    <div class="col-md-3 ml-4 mb-5 border">
+      <div class="text-center mb-4 mt-3">
         <h4>Editar datos personales</h4>
       </div>
+
       <div class="form-row">
         <form action="" method="GET" id="editar-datos">
           <div class="form-group">
-            <label for="editar-nombre">Ingresa tu nombre:</label>
+            <label for="editar-nombre">Ingresa tu nombre completo:</label>
             <input type="text" id="editar-nombre" name="nombre-usuario">
           </div>
           <div class="form-group">
-            <label for="editar-apellido">Ingresa tu apellido:</label>
-            <input type="text" id="editar-apellido" name="apellido-usuario">
-          </div>
-          <div class="form-group">
             <label for="editar-edad">Ingresa tu edad:</label>
-            <input type="number" id="editar-edad" name="edad-usuario" class="age-input-length">
+            <input type="number" id="editar-edad" name="edad-usuario" class="age-input-length" min="18" max="100">
           </div>
           <div class="form-group">
             <label for="editar-email">Ingresa tu e-mail:</label>
@@ -89,6 +88,9 @@
           <div class="form-group">
             <label for="editar-telefono">Ingresa tu numero de telefono:</label>
             <input type="number" id="editar-telefono" name="telefono-usuario">
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
           </div>
         </form> 
       </div>  
